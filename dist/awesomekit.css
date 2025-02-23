@@ -6,6 +6,7 @@
     --orange: #f79808;
     --purple: #9b1fe8;
     --pink: #f72d93;
+    --box-shadow: 7px 9px 12px #e0e0e0;
 }
 
 .m-g-1 {
@@ -1419,4 +1420,176 @@ button:hover {
     max-width: 90%;
     height: fit-content;
     margin: 0 auto;
+}
+
+.awe-alert {
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    padding: 14px 24px;
+    border-radius: 12px;
+    box-shadow: 7px 9px 12px #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    background: #ffffff;
+    transition: all 0.8s ease ;
+}
+
+.awe-alert.success svg{
+    fill: var(--success);
+}
+
+.awe-alert.error svg{
+    fill: var(--error);
+}
+
+.awe-alert.info svg{
+    fill: var(--info);
+}
+
+.awe-alert.warning svg{
+    fill: var(--orange);
+}
+
+.awe-alert.top-center {
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: moveDown 0.8s ease forwards;
+}
+@keyframes moveDown {
+    from {
+      top: -100%;
+    }
+    to {
+      top: 50px;
+    }
+}
+.awe-alert.bottom-center {
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: moveUp 0.8s ease forwards;
+}
+@keyframes moveUp {
+    from {
+      bottom: -100%;
+    }
+    to {
+      bottom: 50px;
+    }
+}
+
+.awe-alert.top-left {
+    left: -100%;
+    top: 50px;
+    animation: moveRight 0.8s ease forwards;
+}
+@keyframes moveRight {
+    from {
+      left: -100%;
+    }
+    to {
+      left: 50px;
+    }
+}
+
+.awe-alert.top-right {
+    right: -100%;
+    top: 50px;
+    animation: moveLeft 0.8s ease forwards;
+}
+@keyframes moveLeft {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 50px;
+    }
+}
+
+.awe-collapse-slider-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+    border: 1px solid lightgray;
+}
+.awe-collapse-slider {
+    width: 100%;
+    height: fit-content;
+    border-radius: 12px;
+}
+.awe-collapse-slider-heading {
+    height: fit-content;
+    padding: 14px 24px;
+    background: lightgray;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.awe-collapse-slider .awe-collapse-slider-heading svg,
+.awe-collapse-slider .awe-collapse-slider-heading img,
+.awe-collapse-slider .awe-collapse-slider-heading i {
+    transition: all 0.6s ease;
+}
+.awe-collapse-slider.active .awe-collapse-slider-content {
+    padding: 14px 24px;
+}
+.awe-collapse-slider.active .awe-collapse-slider-heading svg {
+    transform: rotate(180deg);
+}
+/* Card */
+.awe-card {
+    width: fit-content;
+    height: fit-content;
+    min-width: 350px;
+    min-height: 350px;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid #e0e0e0;
+}
+
+/* DropDown */
+
+.awe-dropdown-container {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    display: inline-block;
+}
+
+.awe-dropdown-trigger {
+    width: fit-content;
+    height: fit-content;
+    padding: 14px 24px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.awe-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    width: 150px;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.awe-dropdown-container.show .awe-dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s;
 }

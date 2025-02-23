@@ -106,3 +106,67 @@ document.addEventListener("DOMContentLoaded", () => {
         startAutoSlide();
     });
 });
+
+// Accordian
+
+document.querySelectorAll(".awe-collapse-slider-container").forEach(container => {
+    let isSingle = container.getAttribute("data-attribute") === "1";
+
+    container.querySelectorAll(".awe-collapse-slider-heading").forEach(heading => {
+        heading.addEventListener("click", function () {
+            let content = this.nextElementSibling;
+            let slider = this.parentElement;
+            let isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+            if (isSingle) {
+                container.querySelectorAll(".awe-collapse-slider-content").forEach(el => {
+                    if (el !== content) {
+                        el.style.maxHeight = null;
+                        el.style.opacity = "0";
+                        el.style.overflow = "hidden";
+                        el.parentElement.classList.remove("active");
+                    }
+                });
+            }
+
+            if (isOpen) {
+                content.style.maxHeight = null;
+                content.style.opacity = "0";
+                content.style.overflow = "hidden";
+                slider.classList.remove("active");
+            } else {
+                content.style.display = "block";
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = "1";
+                content.style.overflow = "visible";
+                slider.classList.add("active");
+            }
+        });
+    });
+});
+
+// Dropdown
+
+document.addEventListener("click", function (event) {
+    document.querySelectorAll(".awe-dropdown-container").forEach(dropdown => {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove("show");
+        }
+    });
+});
+
+document.querySelectorAll(".awe-dropdown-trigger").forEach(button => {
+    button.addEventListener("click", function (event) {
+        event.stopPropagation();
+        let dropdown = this.parentElement;
+        let isOpen = dropdown.classList.contains("show");
+
+        document.querySelectorAll(".awe-dropdown-container").forEach(d => d.classList.remove("show"));
+
+        if (!isOpen) {
+            dropdown.classList.add("show");
+        }
+    });
+});
+
+
