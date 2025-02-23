@@ -169,4 +169,43 @@ document.querySelectorAll(".awe-dropdown-trigger").forEach(button => {
     });
 });
 
+// Notify Modal
+document.addEventListener("DOMContentLoaded", function () {
+    const openButtons = document.querySelectorAll(".open-popup");
+    const closeButtons = document.querySelectorAll(".awe-notifypopup-close");
+    const overlays = document.querySelectorAll(".awe-notifypopup-overlay");
 
+    // Function to open popup
+    function openPopup(id) {
+        document.getElementById(id).classList.add("active");
+        document.body.classList.add("modal-open"); // Block scrolling
+    }
+
+    // Function to close popup
+    function closePopup(popup) {
+        popup.classList.remove("active");
+        document.body.classList.remove("modal-open"); // Unblock scrolling
+    }
+
+    // Attach event listeners to open buttons
+    openButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            let targetId = this.getAttribute("data-target");
+            openPopup(targetId);
+        });
+    });
+
+    // Attach event listeners to close buttons
+    closeButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            closePopup(this.closest(".awe-notifypopup-overlay"));
+        });
+    });
+
+    // Close modal on overlay click
+    overlays.forEach(overlay => {
+        overlay.addEventListener("click", function (e) {
+            if (e.target === this) closePopup(this);
+        });
+    });
+});
